@@ -1,8 +1,9 @@
 package vt
 
 const (
-	Reset            = "\x1b[0m\x1b[m"
-	NewLine          = Reset + "\n"
+	Reset            = "\x1b[m"
+	SafeReset        = "\x1b[0m" + Reset
+	SafeNewLine      = SafeReset + "\n"
 	AttrBoldOff      = "\x1b[22m"
 	AttrBoldOn       = "\x1b[1m"
 	AttrDimOff       = "\x1b[22m"
@@ -59,4 +60,44 @@ func Invisible(text string) string {
 // Wrap in attribute 9 (strike).
 func S(text string) string {
 	return AttrStrikeOn + text + AttrStrikeOff
+}
+
+// Wrap in attribute 1 (bold).
+func SafeB(text string) string {
+	return AttrBoldOn + text + SafeReset
+}
+
+// Wrap in attribute 2 (dim).
+func SafeDim(text string) string {
+	return AttrDimOn + text + SafeReset
+}
+
+// Wrap in attribute 3 (italic).
+func SafeI(text string) string {
+	return AttrItalicOn + text + SafeReset
+}
+
+// Wrap in attribute 4 (underline).
+func SafeU(text string) string {
+	return AttrUnderlineOn + text + SafeReset
+}
+
+// Wrap in attribute 5 (blink).
+func SafeBlink(text string) string {
+	return AttrBlinkOn + text + SafeReset
+}
+
+// Wrap in attribute 7 (reverse).
+func SafeReverse(text string) string {
+	return AttrReverseOn + text + SafeReset
+}
+
+// Wrap in attribute 8 (invisible).
+func SafeInvisible(text string) string {
+	return AttrInvisibleOn + text + SafeReset
+}
+
+// Wrap in attribute 9 (strike).
+func SafeS(text string) string {
+	return AttrStrikeOn + text + SafeReset
 }
